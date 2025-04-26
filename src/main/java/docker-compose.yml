@@ -16,10 +16,14 @@ services:
       KAFKA_LOG_DIRS: /var/lib/kafka/data
       KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_NUM_PARTITIONS: 3
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 2
 
   kafka-2:
     image: confluentinc/cp-kafka:latest
     container_name: kafka-2
+    ports:
+      - "9093:9093"
     environment:
       KAFKA_NODE_ID: 2
       KAFKA_PROCESS_ROLES: controller,broker
@@ -28,7 +32,9 @@ services:
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9094
       KAFKA_LOG_DIRS: /var/lib/kafka/data
       KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
-      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: true
+      KAFKA_NUM_PARTITIONS: 3
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 2
 
   kafka-3:
     image: confluentinc/cp-kafka:latest
@@ -42,3 +48,5 @@ services:
       KAFKA_LOG_DIRS: /var/lib/kafka/data
       KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_NUM_PARTITIONS: 3
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 2
